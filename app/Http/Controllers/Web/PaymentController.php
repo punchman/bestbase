@@ -1,5 +1,5 @@
 <?php
-    namespace App\Http\Controllers;
+    namespace App\Http\Controllers\Web;
 
     use App\Http\Requests\PaymentRequest;
     use App\Payment;
@@ -8,8 +8,9 @@
     {
         public function index()
         {
-            $payments = Payment::get();
-            return response()->json($payments);
+            $payments = Payment::all();
+            $model = 'Payment';
+            return view('list')->with(['listarr' => $payments, 'model' => $model]);
         }
         public function store(PaymentRequest $request)
         {

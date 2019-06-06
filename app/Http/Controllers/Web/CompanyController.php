@@ -1,5 +1,5 @@
 <?php
-    namespace App\Http\Controllers;
+    namespace App\Http\Controllers\Web;
 
     use App\Http\Requests\CompanyRequest;
     use App\Company;
@@ -9,7 +9,9 @@
         public function index()
         {
             $companies = Company::all();
-            return response()->json($companies);
+            $model = 'Company';
+            return view('list')->with(['listarr' => $companies, 'model' => $model]);
+
         }
         public function store(CompanyRequest $request)
         {

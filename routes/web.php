@@ -14,3 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'Web\HomeController@index')->name('home');
+
+Route::get('/companies', 'Web\CompanyController@index')->middleware('auth');;
+
+Route::get('/projects', 'Web\ProjectController@index')->middleware('auth');;
+
+Route::get('/payments', 'Web\PaymentController@index')->middleware('auth');;
+
+Route::get('/tasks', 'Web\TaskController@index')->middleware('auth');;
+
+Route::get('/users', 'Web\UserController@index')->middleware('auth');;
+
+

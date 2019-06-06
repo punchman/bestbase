@@ -14,9 +14,9 @@
             return $this->belongsTo('App\Project');
         }
     
-        public function workers()
+        public function users()
         {
-            return $this->belongsTo('App\Worker');
+            return $this->belongsTo('App\User');
         }    
     
         public $timestamps = false;        

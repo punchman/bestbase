@@ -1,36 +1,35 @@
 <?php
+    namespace App\Http\Controllers\Api;
 
-namespace App\Http\Controllers;
-use App\User;
+    use App\Http\Requests\TaskRequest;
+    use App\Task;
 
-use Illuminate\Http\Request;
-
-class UserController extends Controller
-{
-    public function index()
+    class TaskController extends Controller
+    {
+        public function index()
         {
-            $tasks = User::get();
+            $tasks = Task::get();
             return response()->json($tasks);
         }
         public function store(TaskRequest $request)
         {
-            $task = User::create($request->all());
+            $task = Task::create($request->all());
             return response()->json($task, 201);
         }
         public function show($id)
         {
-            $task = User::findOrFail($id);
+            $task = Task::findOrFail($id);
             return response()->json($task);
         }
         public function update(TaskRequest $request, $id)
         {
-            $task = User::findOrFail($id);
+            $task = Task::findOrFail($id);
             $task->update($request->all());
             return response()->json($task, 200);
         }
         public function destroy($id)
         {
-            User::destroy($id);
+            Task::destroy($id);
             return response()->json(null, 204);
         }
-}
+    }

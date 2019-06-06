@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'FirstName', 'LastName', 'Position','password',
+        'FirstName', 'LastName', 'Position', 'email', 'password',
     ];
 
     /**
@@ -40,4 +40,9 @@ class User extends Authenticatable
     protected $primaryKey = 'UserID';      
 
     public $timestamps = false;   
+
+    public function tasks()
+    {
+        return $this->hasMany('App\Task');
+    }    
 }

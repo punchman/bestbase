@@ -1,5 +1,5 @@
 <?php
-    namespace App\Http\Controllers;
+    namespace App\Http\Controllers\Web;
 
     use App\Http\Requests\ProjectRequest;
     use App\Project;
@@ -8,8 +8,9 @@
     {
         public function index()
         {
-            $projects = Project::get();
-            return response()->json($projects);
+            $projects = Project::all();
+            $model = 'Project';
+            return view('list')->with(['listarr' => $projects, 'model' => $model]);
         }
         public function store(ProjectRequest $request)
         {
