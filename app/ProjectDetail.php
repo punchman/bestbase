@@ -11,7 +11,7 @@
         
         public function projects()
         {
-            return $this->belongsTo('App\Project');
+            return $this->belongsTo('App\Project', 'ProjectDetailID');
         }
     
         public $timestamps = false;        

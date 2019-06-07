@@ -11,10 +11,20 @@
 
             @case('Company')
                 @if (count($listarr) > 0)
-                    @foreach ($listarr as $item)
+                    @foreach ($listarr as $company)
 
-                        <div><a href="{{ url('/companies') }}/{{ $item->CompanyID }}">{{ $i }}. {{ $item->CompanyName }}</a><div>
+                        <div><a href="{{ url('/companies') }}/{{ $company->CompanyID }}">{{ $i }}. {{ $company->CompanyName }}</a><div>
                         
+                        @foreach ($company->projects as $project)
+                            <div class="pl-4"><a href="{{ url('/projects') }}/{{ $project->ProjectID }}">Project: {{ $project->ProjectName }}</a></div>
+
+                        @endforeach
+
+                        @foreach ($company->payments as $payment)
+                            <div class="pl-4"><a href="{{ url('/payments') }}/{{ $payment->PaymentID }}">Payment: {{ $payment->Total }}</a></div>
+
+                        @endforeach
+
                         @php
                             $i++;
                         @endphp
@@ -25,10 +35,16 @@
 
             @case('Project')
                 @if (count($listarr) > 0)
-                    @foreach ($listarr as $item)
+                    @foreach ($listarr as $project)
 
-                        <div><a href="{{ url('/projects') }}/{{ $item->ProjectID }}">{{ $i }}. {{ $item->ProjectName }}</a><div>
+                        <div><a href="{{ url('/projects') }}/{{ $project->ProjectID }}">{{ $i }}. {{ $project->ProjectName }}</a><div>
                         
+                        {{-- @foreach ($project->project_details as $detail) --}}
+                            {{-- <div class="pl-4"><a href="{{ url('/projects_details') }}/{{ $project->projects_details->ProjectDetailID }}">Ditail: {{ $project->projects_details->ProjectDetailID }}</a></div> --}}
+                        {{-- @endforeach --}}
+
+                        {{-- <div>{{ $project->projects_details()->ProjectDetailID }}</div> --}}
+
                         @php
                             $i++;
                         @endphp
@@ -55,7 +71,7 @@
                 @if (count($listarr) > 0)
                     @foreach ($listarr as $item)
 
-                        <div><a href="{{ url('/tasks') }}/{{ $item->TaskID }}">{{ $i }}. {{ $item->Description }}</a><div>
+                        <div><a href="{{ url('/tasks') }}/{{ $item->TaskID }}">{{ $i }}. TaskID={{ $item->TaskID }}, UserID={{ $item->users->UserID }}</a><div>
                         @php
                             $i++;
                         @endphp
@@ -66,9 +82,14 @@
 
             @case('User')
                 @if (count($listarr) > 0)
-                    @foreach ($listarr as $item)
+                    @foreach ($listarr as $user)
 
-                        <div><a href="{{ url('/users') }}/{{ $item->UserID }}">{{ $i }}. {{ $item->email }}</a><div>
+                        <div><a href="{{ url('/users') }}/{{ $user->UserID }}">{{ $i }}. {{ $user->email }}</a><div>
+
+                        @foreach ($user->tasks as $task)
+                            <div class="pl-4"><a href="{{ url('/tasks') }}/{{ $task->TaskID }}">Task #{{ $task->TaskID }}</a></div>
+
+                        @endforeach
 
                         @php
                             $i++;

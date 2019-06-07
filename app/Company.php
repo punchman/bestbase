@@ -11,12 +11,12 @@
 
         public function projects()
         {
-            return $this->hasMany('App\Project');
+            return $this->hasMany('App\Project', 'CompanyID');
         }
     
         public function payments()
         {
-            return $this->hasMany('App\Payment');
+            return $this->hasMany('App\Payment', 'CompanyID');
         }    
     
         public $timestamps = false;        

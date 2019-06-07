@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 use App\User;
+use App\Task;
 
 use Illuminate\Http\Request;
 
@@ -12,7 +13,6 @@ class UserController extends Controller
             $users = User::all();
             $model = 'User';
 
-            // dd($users);
             return view('list')->with(['listarr' => $users ,'model' => $model]);
         }
         public function store(TaskRequest $request)

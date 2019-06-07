@@ -11,12 +11,13 @@
 
         public function projects()
         {
-            return $this->belongsTo('App\Project');
+            return $this->belongsTo('App\Project', 'TaskID');
         }
     
         public function users()
         {
-            return $this->belongsTo('App\User');
+            // return $this->belongsTo('App\User', 'UserID');
+            return $this->belongsTo('App\User', 'TaskID');
         }    
     
         public $timestamps = false;        

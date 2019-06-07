@@ -11,7 +11,7 @@
 
         public function companies()
         {
-            return $this->belongsTo('App\Company');
+            return $this->belongsTo('App\Company', 'PaymentID');
         }
 
         public $timestamps = false;
