@@ -5,19 +5,19 @@
 
     class Company extends Model
     {
-        protected $guarded = ['CompanyID'];
+        protected $guarded = ['id'];
 
-        protected $primaryKey = 'CompanyID';
+        protected $primaryKey = 'id';
 
         public function projects()
         {
-            return $this->hasMany('App\Project', 'CompanyID');
+            return $this->hasMany('App\Project');
         }
     
         public function payments()
         {
-            return $this->hasMany('App\Payment', 'CompanyID');
+            return $this->hasMany('App\Payment');
         }    
     
-        public $timestamps = false;        
+        // public $timestamps = false;        
     }

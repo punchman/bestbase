@@ -18,8 +18,8 @@ class ProjectDetailsTableSeeder extends Seeder
         // Create 20 records
         for ($i = 0; $i < 20; $i++) {
             ProjectDetail::create([
-                'ProjectID'      => $faker->numberBetween($min = 1, $max = 20),
-                'Description'    => $faker->text($maxNbChars = 300)
+                'project_id'     => $faker->numberBetween($min = 1, $max = 20),
+                'description'    => $faker->text($maxNbChars = 300)
             ]);
         }
 

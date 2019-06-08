@@ -19,13 +19,13 @@ class ProjectsTableSeeder extends Seeder
         // Create 20 records
         for ($i = 0; $i < 20; $i++) {
             Project::create([
-                'ProjectName'  => $faker->sentence($nbWords = 6, $variableNbWords = true),
-                'CompanyID'    => $faker->numberBetween($min = 1, $max = 20),
-                'DateFrom'     => $faker->date($format = 'Y-m-d', $max = 'now'),
-                'DateTo'       => $faker->date($format = 'Y-m-d'),
-                'Description'  => $faker->text($maxNbChars = 300),
-                'Total'        => $faker->numberBetween($min = 1000, $max = 20000),
-                'Status'       => $faker->word
+                'project_name' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+                'company_id'   => $faker->numberBetween($min = 1, $max = 20),
+                'date_from'    => $faker->date($format = 'Y-m-d', $max = 'now'),
+                'date_to'      => $faker->date($format = 'Y-m-d'),
+                'description'  => $faker->text($maxNbChars = 300),
+                'amount'       => $faker->numberBetween($min = 1000, $max = 20000),
+                'status'       => $faker->word
             ]);
         } 
          

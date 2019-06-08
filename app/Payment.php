@@ -5,14 +5,14 @@
 
     class Payment extends Model
     {
-        protected $guarded = ['PaymentID'];
+        protected $guarded = ['id'];
 
-        protected $primaryKey = 'PaymentID';
+        protected $primaryKey = 'id';
 
         public function companies()
         {
-            return $this->belongsTo('App\Company', 'PaymentID');
+            return $this->belongsTo('App\Company', 'company_id', 'id');
         }
 
-        public $timestamps = false;
+        // public $timestamps = false;
     }

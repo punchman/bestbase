@@ -18,15 +18,15 @@ class TasksTableSeeder extends Seeder
         // Create 20 records
         for ($i = 0; $i < 20; $i++) {
             Task::create([
-                'ProjectID'   => $faker->numberBetween($min = 1, $max = 20),
-                'UserID'      => $faker->numberBetween($min = 1, $max = 20),                
-                'Description' => $faker->text($maxNbChars = 300),
-                'Hours'       => $faker->numberBetween($min = 100, $max = 200),
-                'Rate'        => $faker->numberBetween($min = 200, $max = 1000),
-                'Comment'     => $faker->text($maxNbChars = 300),
-                'Date'        => $faker->date($format = 'Y-m-d', $max = 'now'),
-                'Status'      => $faker->word, 
-                'Approved'    => $faker->boolean($chanceOfGettingTrue = 50)
+                'project_id'  => $faker->numberBetween($min = 1, $max = 20),
+                'user_id'     => $faker->numberBetween($min = 1, $max = 20),                
+                'description' => $faker->text($maxNbChars = 300),
+                'hours'       => $faker->numberBetween($min = 100, $max = 200),
+                'rate'        => $faker->numberBetween($min = 200, $max = 1000),
+                'comment'     => $faker->text($maxNbChars = 300),
+                'date'        => $faker->date($format = 'Y-m-d', $max = 'now'),
+                'status'      => $faker->word, 
+                'approved'    => $faker->boolean($chanceOfGettingTrue = 50)
             ]);
         } 
     }

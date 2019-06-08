@@ -18,10 +18,10 @@ class PaymentsTableSeeder extends Seeder
         // Create 20 records
         for ($i = 0; $i < 20; $i++) {
             Payment::create([
-                'CompanyID'   => $faker->numberBetween($min = 1, $max = 20),
-                'Date'        => $faker->date($format = 'Y-m-d', $max = 'now'),
-                'Total'       => $faker->numberBetween($min = 1000, $max = 20000),
-                'Description' => $faker->text($maxNbChars = 300)
+                'company_id'  => $faker->numberBetween($min = 1, $max = 20),
+                'date'        => $faker->date($format = 'Y-m-d', $max = 'now'),
+                'amount'      => $faker->numberBetween($min = 1000, $max = 20000),
+                'description' => $faker->text($maxNbChars = 300)
             ]);
         }
     }

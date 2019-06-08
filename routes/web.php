@@ -23,6 +23,8 @@ Route::get('/companies', 'Web\CompanyController@index')->middleware('auth');;
 
 Route::get('/projects', 'Web\ProjectController@index')->middleware('auth');;
 
+Route::get('/project_details', 'Web\ProjectDetailController@index')->middleware('auth');;
+
 Route::get('/payments', 'Web\PaymentController@index')->middleware('auth');;
 
 Route::get('/tasks', 'Web\TaskController@index')->middleware('auth');;

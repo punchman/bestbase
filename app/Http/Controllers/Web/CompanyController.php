@@ -8,7 +8,7 @@
     {
         public function index()
         {
-            $companies = Company::all();
+            $companies = Company::all(); // paginate(5)
             $model = 'Company';
             return view('list')->with(['listarr' => $companies, 'model' => $model]);
 

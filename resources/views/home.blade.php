@@ -11,6 +11,7 @@
     <div><a href="{{ url('/companies') }}">Companies</a></div>
     <div><a href="{{ url('/projects') }}">Projects</a></div>
     <div><a href="{{ url('/payments') }}">Payments</a></div>
+    <div><a href="{{ url('/project_details') }}">Projects Details</a></div>
     <div><a href="{{ url('/tasks') }}">Tasks</a></div>
     <div><a href="{{ url('/users') }}">Users</a></div>
 </div>

@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'FirstName', 'LastName', 'Position', 'email', 'password',
+        'first_name', 'last_name', 'position', 'email', 'password',
     ];
 
     /**
@@ -37,12 +37,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $primaryKey = 'UserID';      
+    protected $primaryKey = 'id';      
 
-    public $timestamps = false;   
+    // public $timestamps = false;   
 
     public function tasks()
     {
-        return $this->hasMany('App\Task', 'UserID');
+        return $this->hasMany('App\Task');
     }    
 }

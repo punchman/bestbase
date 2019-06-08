@@ -5,20 +5,19 @@
 
     class Task extends Model
     {
-        protected $guarded = ['TaskID'];
+        protected $guarded = ['id'];
 
-        protected $primaryKey = 'TaskID';        
+        protected $primaryKey = 'id';        
 
         public function projects()
         {
-            return $this->belongsTo('App\Project', 'TaskID');
+            return $this->belongsTo('App\Project', 'project_id', 'id');
         }
     
         public function users()
         {
-            // return $this->belongsTo('App\User', 'UserID');
-            return $this->belongsTo('App\User', 'TaskID');
+            return $this->belongsTo('App\User', 'user_id', 'id');
         }    
     
-        public $timestamps = false;        
+        // public $timestamps = false;        
     }

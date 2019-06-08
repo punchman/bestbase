@@ -8,7 +8,7 @@
     {
         public function index()
         {
-            $tasks = Task::all();
+            $tasks = Task::with(['users', 'projects'])->get();
             $model = 'Task';
             return view('list')->with(['listarr' => $tasks, 'model' => $model]);
         }

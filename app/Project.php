@@ -5,25 +5,25 @@
 
     class Project extends Model
     {
-        protected $guarded = ['ProjectID'];
+        protected $guarded = ['id'];
 
-        protected $primaryKey = 'ProjectID';        
+        protected $primaryKey = 'id';        
 
         public function companies()
         {
-            return $this->belongsTo('App\Company', 'ProjectID');
+            return $this->belongsTo('App\Company');
         }
     
         public function tasks()
         {
-            return $this->hasMany('App\Task', 'ProjectID');
+            return $this->hasMany('App\Task', 'project_id', 'id');
         }
         
-        public function project_detailes()
+        public function project_details()
         {
-            return $this->hasOne('App\ProjectDetail', 'ProjectDetailID');
+            return $this->hasMany('App\ProjectDetail');
         }    
     
-        public $timestamps = false;
+        // public $timestamps = false;
             
     }

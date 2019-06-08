@@ -8,7 +8,7 @@
     {
         public function index()
         {
-            $payments = Payment::all();
+            $payments = Payment::with('companies')->get();
             $model = 'Payment';
             return view('list')->with(['listarr' => $payments, 'model' => $model]);
         }

@@ -14,13 +14,13 @@ class CreatePaymentsTable extends Migration
     public function up()
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->bigIncrements('PaymentID');
-            $table->bigInteger('CompanyID')->unsigned();
-            $table->foreign('CompanyID')->references('CompanyID')->on('companies');            
-            $table->timestamp('Date')->nullable();
-            $table->integer('Total')->length(10, 2);
-            $table->string('Description', 500);
-            // $table->timestamps();
+            $table->bigIncrements('id');
+            $table->bigInteger('company_id')->unsigned();
+            $table->foreign('company_id')->references('id')->on('companies');            
+            $table->timestamp('date')->nullable();
+            $table->integer('amount')->length(10, 2);
+            $table->string('description', 500);
+            $table->timestamps();
         });
     }
 

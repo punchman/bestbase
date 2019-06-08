@@ -19,12 +19,12 @@ class CompaniesTableSeeder extends Seeder
         // Create 20 records
         for ($i = 0; $i < 20; $i++) {
             Company::create([
-                'CompanyName' => $faker->company,
-                'Address1'    => $faker->address,
-                'Address2'    => $faker->streetAddress,
-                'City'        => $faker->city,
-                'State'       => $faker->state,
-                'Country'     => $faker->country
+                'company_name' => $faker->company,
+                'address1'     => $faker->address,
+                'address2'     => $faker->streetAddress,
+                'city'         => $faker->city,
+                'state'        => $faker->state,
+                'country'      => $faker->country
             ]);
         }
 

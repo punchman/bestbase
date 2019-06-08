@@ -19,11 +19,11 @@ class UsersTableSeeder extends Seeder
         // Create 20 records
         for ($i = 0; $i < 20; $i++) {        
             User::create([
-                'FirstName' => $faker->firstNameMale,
-                'LastName'  => $faker->lastName,
-                'Position'  => $faker->word,
-                'email'     => $faker->firstNameMale.'.'.$faker->lastName.'@gmail.com',
-                'password'  => bcrypt('password')
+                'first_name' => $faker->firstNameMale,
+                'last_name'  => $faker->lastName,
+                'position'   => $faker->word,
+                'email'      => $faker->firstNameMale.'.'.$faker->lastName.'@gmail.com',
+                'password'   => bcrypt('password')
             ]);
         }
     }
