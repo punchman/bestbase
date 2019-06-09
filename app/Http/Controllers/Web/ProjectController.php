@@ -3,18 +3,26 @@
 
     use App\Http\Requests\ProjectRequest;
     use App\Project;
+    use App\ProjectDetail;
 
     class ProjectController extends Controller
     {
         public function index()
         {
-            $projects = Project::with('companies')->get();
+            // with('companies')->get()
+            $projects = Project::all();
             return view('projects.index')->with('projects', $projects);
         }
 
         public function create()
         {
-            return view('project.create');
+            return view('projects.create');
+        }
+
+        public function detail_create($id)
+        {
+            $project = Project::findOrFail($id);
+            return view('projects.detail_create')->with('project', $project);
         }
 
         public function store(ProjectRequest $request)
@@ -29,12 +37,20 @@
             $project->status        = $request->input('status');
             $project->save();
 
+            if ($request->input('detail_description') !== ''):
+                $project_detail = new ProjectDetail;
+                $project_detail->projects()->associate($project);
+                $project_detail->description = $request->input('detail_description');
+                $project_detail->save();
+            endif;
+
             return redirect('/projects')->with('success', 'Project Created');
         }
 
         public function show($id)
         {
-            $project = Project::with('companies')->findOrFail($id);
+            // with('companies')->
+            $project = Project::findOrFail($id);
             return view('projects.show')->with('project', $project);
         }
 
@@ -55,14 +71,14 @@
             $project->amount        = $request->input('amount');
             $project->status        = $request->input('status');
             $project->save();
-
             return redirect('/projects/'.$id)->with('success', 'Project Updated');
         }
         public function destroy($id)
         {
             $project = Project::findOrFail($id);
+            $project->project_details()->delete();
             $project->delete();
-            return redirect('/projects')->with('success', 'Project Deleted');
+            return redirect('/projects')->with('success', 'Project and Details Deleted');
         }
 
     }

@@ -11,6 +11,9 @@
         }
         public function rules()
         {
-            return [];
+            return [
+                'project_id'    => 'required',
+                'description'   => 'required|max:500'
+            ];
         }
     }

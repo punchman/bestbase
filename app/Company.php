@@ -13,13 +13,13 @@
         {
             return $this->hasMany('App\Project');
         }
-    
+
         public function payments()
         {
             return $this->hasMany('App\Payment');
-        }    
+        }
 
         protected $fillable = ['company_name', 'address1', 'address2', 'city', 'state', 'country'];
-    
-        // public $timestamps = false;        
+
+        // public $timestamps = false;
     }

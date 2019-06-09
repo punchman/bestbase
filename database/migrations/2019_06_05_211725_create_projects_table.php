@@ -21,7 +21,7 @@ class CreateProjectsTable extends Migration
             $table->timestamp('date_from')->nullable();
             $table->timestamp('date_to')->nullable();
             $table->string('description', 500);
-            $table->integer('amount')->length(10, 2);            
+            $table->integer('amount')->length(10, 2);
             $table->string('status');
             $table->timestamps();
         });

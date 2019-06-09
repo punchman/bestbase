@@ -17,14 +17,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::resource('companies', 'Api\CompanyController');
+Route::resource('companies', 'Api\CompanyController');
 
-// Route::resource('projects', 'Api\ProjectController');
+Route::resource('projects', 'Api\ProjectController');
 
-// Route::resource('projectdetails', 'Api\ProjectDetailController');
+Route::resource('projectdetails', 'Api\ProjectDetailController');
 
-// Route::resource('tasks', 'Api\TaskController');
+Route::resource('tasks', 'Api\TaskController');
 
-// Route::resource('payments', 'Api\PaymentController');
+Route::resource('payments', 'Api\PaymentController');
 
-// Route::resource('users', 'Api\UserController');
+Route::resource('users', 'Api\UserController');

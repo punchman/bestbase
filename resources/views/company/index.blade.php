@@ -15,7 +15,7 @@
 
                     <div><a href="{{ url('/companies') }}/{{ $company->id }}">{{ $i }}. {{ $company->company_name }}</a></div>
 
-                {{-- @if (is_object($company->projects) && !empty($company->projects))
+                @if (is_object($company->projects) && !empty($company->projects))
 
                     @foreach ($company->projects as $project)
 
@@ -33,7 +33,7 @@
 
                     @endforeach
 
-                @endif --}}
+                @endif
 
                     @php
                         $i++;

@@ -10,15 +10,53 @@
     @endphp
 
     @if (count($projects) > 0)
-        @foreach ($projects as $project)
 
-            <div><a href="{{ url('/projects') }}/{{ $project->id }}">{{ $i }}. {{ $project->project_name }}</a><div>
+        {{-- <div class="list-group"> --}}
 
-            @php
-                $i++;
-            @endphp
+{{--             <div class="table-responsive">
 
-        @endforeach
+                <table class="table">
+                    <tr>
+                        <th>#</th>
+                        <th>Project Name</th>
+                        <th>Company</th>
+                        <th>Details</th>
+                        <th>User</th>
+                    </tr> --}}
+                    @foreach ($projects as $project)
+
+                        @php
+                            $details_count = 0;
+                            $company_name = '-';
+
+                            if(is_object($project->project_details) && !empty($project->project_details)):
+                                $details_count = count($project->project_details);
+                            endif;
+
+                            if(is_object($project->companies) && !empty($project->companies)):
+                                $company_name = $project->companies->company_name;
+                            endif;
+                        @endphp
+
+                            {{-- <tr>
+                                <td>{{ $i }}.</td>
+                                <td>{{ $project->project_name }}</td>
+                                <td>{{ $company_name }}</td>
+                                <td><span class="badge badge-primary badge-pill">{{ $details_count }}</span></td>
+                                <td>Kolya Petrov</td>
+                            </tr> --}}
+
+                        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="{{ url('/projects') }}/{{ $project->id }}">{{ $i }}. {{ $project->project_name }}<span class="badge badge-primary badge-pill">{{ $details_count }}</span></a>
+
+                        @php
+                            $i++;
+                        @endphp
+
+                    @endforeach
+
+                {{-- </table>
+            </div> --}}
+        </div>
     @endif
 
 @endsection

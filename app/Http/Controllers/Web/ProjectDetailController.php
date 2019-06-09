@@ -15,7 +15,8 @@
         public function store(ProjectDetailRequest $request)
         {
             $projectdetail = ProjectDetail::create($request->all());
-            return response()->json($projectdetail, 201);
+            $project_id = $request->input('project_id');
+            return redirect('/projects/'.$project_id)->with('success', 'Ditail Created');
         }
         public function show($id)
         {
@@ -38,10 +39,10 @@
         public function create()
         {
             //
-        }    
-        
+        }
+
         public function edit($id)
         {
             //
-        }        
+        }
     }

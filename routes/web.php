@@ -20,10 +20,16 @@ Auth::routes();
 Route::get('/home', 'Web\HomeController@index')->name('home');
 
 Route::resource('companies', 'Web\CompanyController')->middleware('auth');
+
+Route::get('/projects/{id}/detail_create', 'Web\ProjectController@detail_create')->middleware('auth');
 Route::resource('projects', 'Web\ProjectController')->middleware('auth');
+
 Route::resource('project_details', 'Web\ProjectDetailController')->middleware('auth');
+
 Route::resource('payments', 'Web\PaymentController')->middleware('auth');
+
 Route::resource('tasks', 'Web\TaskController')->middleware('auth');
+
 Route::resource('users', 'Web\UserController')->middleware('auth');
 
 
