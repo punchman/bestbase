@@ -1,11 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
-        <div class="mb-4"><a href="{{ url('/home') }}">&#8592; Back to Items List</a></div>
+        @switch($model)
+            @case('Company')
+                @php
+                    $url = '/companies/create';
+                @endphp
+            @break
+
+            @case('Project')
+                @php
+                    $url = '/projects/create';
+                @endphp
+            @break
+
+            @case('ProjectDetail')
+                @php
+                    $url = '/project_details/create';
+                @endphp
+            @break
+
+            @case('Payment')
+                @php
+                    $url = '/payments/create';
+                @endphp
+            @break
+
+            @case('Task')
+                @php
+                    $url = '/tasks/create';
+                @endphp
+            @break
+
+            @case('User')
+                @php
+                    $url = '/users/create';
+                @endphp
+            @break
+
+            @default
+
+        @endswitch
+
+        <a class="mb-4 btn btn-primary" href="{{ url('/home') }}">Back</a>
+        <a class="mb-4 btn btn-success" href="{{ url($url) }}">Create New</a>
 
         @php
             $i = 1;
-        @endphp        
+        @endphp
 
         @switch($model)
 
@@ -14,7 +56,7 @@
                     @foreach ($listarr as $company)
 
                         <div><a href="{{ url('/companies') }}/{{ $company->id }}">{{ $i }}. {{ $company->company_name }}</a></div>
-                        
+
                     @if (is_object($company->projects) && !empty($company->projects))
 
                         @foreach ($company->projects as $project)
@@ -49,7 +91,7 @@
                     @foreach ($listarr as $project)
 
                         <div><a href="{{ url('/projects') }}/{{ $project->id }}">{{ $i }}. {{ $project->project_name }}</a><div>
-                        
+
                         @if (is_object($project->project_details) && !empty($project->project_details))
 
                             @foreach ($project->project_details as $detail)
@@ -76,7 +118,7 @@
                             @if (is_object($project_detail->projects) && !empty($project_detail->projects))
                                 <div class="pl-4"><a href="{{ url('/projects') }}/{{ $project_detail->projects->id }}">Project: {{ $project_detail->projects->project_name }}</a></div>
 
-                            @endif                        
+                            @endif
 
                         @php
                             $i++;
@@ -84,14 +126,14 @@
 
                     @endforeach
                 @endif
-                @break                
+                @break
 
             @case('Payment')
                 @if (count($listarr) > 0)
                     @foreach ($listarr as $payment)
 
                         <div><a href="{{ url('/payments') }}/{{ $payment->id }}">{{ $i }}. Amount: {{ $payment->amount }}</a><div>
-                        
+
                         @if (is_object($payment->companies) && !empty($payment->companies))
 
                             <div class="pl-4"><a href="{{ url('/companies') }}/{{ $payment->companies->id }}">Company: {{ $payment->companies->company_name}}</a></div>
@@ -130,7 +172,7 @@
 
                     @endforeach
                 @endif
-                @break    
+                @break
 
             @case('User')
                 @if (count($listarr) > 0)
@@ -153,7 +195,7 @@
 
                     @endforeach
                 @endif
-                @break                                            
+                @break
 
             @default
         @endswitch

@@ -14,5 +14,7 @@
             return $this->belongsTo('App\Company', 'company_id', 'id');
         }
 
+        protected $fillable = ['company_id', 'date', 'amount', 'description'];    
+        
         // public $timestamps = false;
     }

@@ -20,7 +20,8 @@
         public function show($id)
         {
             $task = Task::findOrFail($id);
-            return response()->json($task);
+            $model = 'Task';
+            return view('single')->with(['item' => $task, 'model' => $model]);
         }
         public function update(TaskRequest $request, $id)
         {
@@ -33,4 +34,14 @@
             Task::destroy($id);
             return response()->json(null, 204);
         }
+
+        public function create()
+        {
+            //
+        }      
+        
+        public function edit($id)
+        {
+            //
+        }        
     }

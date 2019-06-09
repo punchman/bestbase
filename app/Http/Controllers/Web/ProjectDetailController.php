@@ -19,8 +19,9 @@
         }
         public function show($id)
         {
-            $projectdetail = ProjectDetail::findOrFail($id);
-            return response()->json($projectdetail);
+            $project_detail = ProjectDetail::findOrFail($id);
+            $model = 'ProjectDetail';
+            return view('single')->with(['item' => $project_detail, 'model' => $model]);
         }
         public function update(ProjectDetailRequest $request, $id)
         {
@@ -33,4 +34,14 @@
             ProjectDetail::destroy($id);
             return response()->json(null, 204);
         }
+
+        public function create()
+        {
+            //
+        }    
+        
+        public function edit($id)
+        {
+            //
+        }        
     }

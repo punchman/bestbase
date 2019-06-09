@@ -12,7 +12,6 @@ class UserController extends Controller
         {
             $users = User::all();
             $model = 'User';
-
             return view('list')->with(['listarr' => $users ,'model' => $model]);
         }
         public function store(TaskRequest $request)
@@ -22,8 +21,9 @@ class UserController extends Controller
         }
         public function show($id)
         {
-            $users = User::findOrFail($id);
-            return response()->json($users);
+            $user = User::findOrFail($id);
+            $model = 'User';
+            return view('single')->with(['item' => $user ,'model' => $model]);
         }
         public function update(TaskRequest $request, $id)
         {
@@ -36,4 +36,14 @@ class UserController extends Controller
             User::destroy($id);
             return response()->json(null, 204);
         }
+
+        public function create()
+        {
+            //
+        }        
+
+        public function edit($id)
+        {
+            //
+        }        
 }

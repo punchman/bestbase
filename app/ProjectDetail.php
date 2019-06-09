@@ -18,4 +18,6 @@
         // public $timestamps = false;        
 
         protected $table = 'project_details';
+
+        protected $fillable = ['description', 'project_id'];
     }

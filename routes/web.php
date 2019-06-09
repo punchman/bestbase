@@ -19,16 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'Web\HomeController@index')->name('home');
 
-Route::get('/companies', 'Web\CompanyController@index')->middleware('auth');;
-
-Route::get('/projects', 'Web\ProjectController@index')->middleware('auth');;
-
-Route::get('/project_details', 'Web\ProjectDetailController@index')->middleware('auth');;
-
-Route::get('/payments', 'Web\PaymentController@index')->middleware('auth');;
-
-Route::get('/tasks', 'Web\TaskController@index')->middleware('auth');;
-
-Route::get('/users', 'Web\UserController@index')->middleware('auth');;
+Route::resource('companies', 'Web\CompanyController')->middleware('auth');
+Route::resource('projects', 'Web\ProjectController')->middleware('auth');
+Route::resource('project_details', 'Web\ProjectDetailController')->middleware('auth');
+Route::resource('payments', 'Web\PaymentController')->middleware('auth');
+Route::resource('tasks', 'Web\TaskController')->middleware('auth');
+Route::resource('users', 'Web\UserController')->middleware('auth');
 
 

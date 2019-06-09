@@ -20,7 +20,8 @@
         public function show($id)
         {
             $payment = Payment::findOrFail($id);
-            return response()->json($payment);
+            $model = 'Payment';
+            return view('single')->with(['item' => $payment, 'model' => $model]);
         }
         public function update(PaymentRequest $request, $id)
         {
@@ -33,4 +34,14 @@
             Payment::destroy($id);
             return response()->json(null, 204);
         }
+
+        public function create()
+        {
+            //
+        }   
+        
+        public function edit($id)
+        {
+            //
+        }        
     }

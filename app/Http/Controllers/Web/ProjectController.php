@@ -8,29 +8,61 @@
     {
         public function index()
         {
-            $projects = Project::all();
-            $model = 'Project';
-            return view('list')->with(['listarr' => $projects, 'model' => $model]);
+            $projects = Project::with('companies')->get();
+            return view('projects.index')->with('projects', $projects);
         }
+
+        public function create()
+        {
+            return view('project.create');
+        }
+
         public function store(ProjectRequest $request)
         {
-            $project = Project::create($request->all());
-            return response()->json($project, 201);
+            $project = new Project;
+            $project->project_name  = $request->input('project_name');
+            $project->company_id    = $request->input('company_id');
+            $project->date_from     = $request->input('date_from');
+            $project->date_to       = $request->input('date_to');
+            $project->description   = $request->input('description');
+            $project->amount        = $request->input('amount');
+            $project->status        = $request->input('status');
+            $project->save();
+
+            return redirect('/projects')->with('success', 'Project Created');
         }
+
         public function show($id)
         {
-            $project = Project::findOrFail($id);
-            return response()->json($project);
+            $project = Project::with('companies')->findOrFail($id);
+            return view('projects.show')->with('project', $project);
         }
+
+        public function edit($id)
+        {
+            $project = Project::findOrFail($id);
+            return view('projects.edit')->with('project', $project);
+        }
+
         public function update(ProjectRequest $request, $id)
         {
             $project = Project::findOrFail($id);
-            $project->update($request->all());
-            return response()->json($project, 200);
+            $project->project_name  = $request->input('project_name');
+            $project->company_id    = $request->input('company_id');
+            $project->date_from     = $request->input('date_from');
+            $project->date_to       = $request->input('date_to');
+            $project->description   = $request->input('description');
+            $project->amount        = $request->input('amount');
+            $project->status        = $request->input('status');
+            $project->save();
+
+            return redirect('/projects/'.$id)->with('success', 'Project Updated');
         }
         public function destroy($id)
         {
-            Project::destroy($id);
-            return response()->json(null, 204);
+            $project = Project::findOrFail($id);
+            $project->delete();
+            return redirect('/projects')->with('success', 'Project Deleted');
         }
+
     }
