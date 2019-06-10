@@ -21,7 +21,10 @@ Route::get('/home', 'Web\HomeController@index')->name('home');
 
 Route::resource('companies', 'Web\CompanyController')->middleware('auth');
 
-Route::get('/projects/{id}/detail_create', 'Web\ProjectController@detail_create')->middleware('auth');
+Route::get('/projects/{id}/detail_create', 'Web\ProjectDetailController@create')->middleware('auth');
+
+// Route::get('/project_details/{project_detail}/edit', 'Web\ProjectDetailController@edit')->middleware('auth');
+
 Route::resource('projects', 'Web\ProjectController')->middleware('auth');
 
 Route::resource('project_details', 'Web\ProjectDetailController')->middleware('auth');

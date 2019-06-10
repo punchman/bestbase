@@ -11,18 +11,12 @@
         {
             // with('companies')->get()
             $projects = Project::all();
-            return view('projects.index')->with('projects', $projects);
+            return view('project.index')->with('projects', $projects);
         }
 
         public function create()
         {
-            return view('projects.create');
-        }
-
-        public function detail_create($id)
-        {
-            $project = Project::findOrFail($id);
-            return view('projects.detail_create')->with('project', $project);
+            return view('project.create');
         }
 
         public function store(ProjectRequest $request)
@@ -51,13 +45,13 @@
         {
             // with('companies')->
             $project = Project::findOrFail($id);
-            return view('projects.show')->with('project', $project);
+            return view('project.show')->with('project', $project);
         }
 
         public function edit($id)
         {
             $project = Project::findOrFail($id);
-            return view('projects.edit')->with('project', $project);
+            return view('project.edit')->with('project', $project);
         }
 
         public function update(ProjectRequest $request, $id)

@@ -52,7 +52,7 @@
             $company->city         = $request->input('city');
             $company->state        = $request->input('state');
             $company->country      = $request->input('country');
-            $company->save();
+            $company->update();
 
             return redirect('/companies/'.$id)->with('success', 'Company Updated');
         }
