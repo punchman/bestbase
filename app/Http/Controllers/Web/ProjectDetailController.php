@@ -20,6 +20,12 @@
             return view('project_detail.create')->with('project', $project);
         }
 
+        public function create_single()
+        {
+            // $project = Project::findOrFail($id);
+            return view('project_detail.create_single');
+        }
+
         public function store(ProjectDetailRequest $request)
         {
             $project_detail = new ProjectDetail;
