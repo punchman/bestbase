@@ -4,8 +4,8 @@
     @if (is_object($project->companies) && !empty($project->companies))
         <div><a href="{{ url('/companies') }}/{{ $project->companies->id }}">Company: {{ $project->companies->company_name }}</a></div>
     @endif
-    <div>DateFrom: {{ date('d.m.Y', strtotime($project->date_from)) }}</div>
-    <div>DateTo: {{ date('d.m.Y', strtotime($project->date_to)) }}</div>
+    <div>DateFrom: {{ date('Y-m-d', strtotime($project->date_from)) }}</div>
+    <div>DateTo: {{ date('Y-m-d', strtotime($project->date_to)) }}</div>
     <div>Description: {{ $project->description }}</div>
     <div>Total: {{ $project->amount }}</div>
     <div>Status: {{ $project->status }}</div>

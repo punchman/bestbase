@@ -8,40 +8,48 @@
     {
         public function index()
         {
-            $tasks = Task::with(['users', 'projects'])->get();
-            $model = 'Task';
-            return view('list')->with(['listarr' => $tasks, 'model' => $model]);
-        }
-        public function store(TaskRequest $request)
-        {
-            $task = Task::create($request->all());
-            return response()->json($task, 201);
-        }
-        public function show($id)
-        {
-            $task = Task::findOrFail($id);
-            $model = 'Task';
-            return view('single')->with(['item' => $task, 'model' => $model]);
-        }
-        public function update(TaskRequest $request, $id)
-        {
-            $task = Task::findOrFail($id);
-            $task->update($request->all());
-            return response()->json($task, 200);
-        }
-        public function destroy($id)
-        {
-            Task::destroy($id);
-            return response()->json(null, 204);
+            // with(['users', 'projects'])->get()
+            $tasks = Task::all();
+            return view('task.index')->with('tasks', $tasks);
         }
 
         public function create()
         {
-            //
-        }      
-        
+            return view('task.create');
+        }
+
+        public function store(TaskRequest $request)
+        {
+            $task = Task::create($request->all());
+            $task->save();
+            return redirect('/tasks')->with('success', 'Task Created');
+
+        }
+
+        public function show($id)
+        {
+            $task = Task::findOrFail($id);
+            return view('task.show')->with('task', $task);
+        }
+
         public function edit($id)
         {
-            //
-        }        
+            $task = Task::findOrFail($id);
+            return view('task.edit')->with('task', $task);
+        }
+
+        public function update(TaskRequest $request, $id)
+        {
+            $task = Task::findOrFail($id);
+            $task->update($request->all());
+            return redirect('/tasks/'.$id)->with('success', 'Task Updated');
+        }
+
+        public function destroy($id)
+        {
+            $task = Task::findOrFail($id);
+            $task->delete();
+            return redirect('/tasks')->with('success', 'Task Deleted');
+        }
+
     }

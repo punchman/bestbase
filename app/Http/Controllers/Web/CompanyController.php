@@ -56,6 +56,7 @@
 
             return redirect('/companies/'.$id)->with('success', 'Company Updated');
         }
+
         public function destroy($id)
         {
             $company = Company::findOrFail($id);

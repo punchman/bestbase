@@ -25,12 +25,12 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     {{ Form::label('date_from', 'DateFrom') }}
-                    {{ Form::text('date_from', $project->date_from, ['class' => 'form-control', 'placeholder' => 'DateFrom']) }}
+                    {{ Form::date('date_from', date('Y-m-d', strtotime($project->date_from)), ['class' => 'form-control']) }}
                 </div>
 
                 <div class="form-group col-md-6">
                     {{ Form::label('date_to', 'DateTo') }}
-                    {{ Form::text('date_to', $project->date_to, ['class' => 'form-control', 'placeholder' => 'DateTo']) }}
+                    {{ Form::date('date_to', date('Y-m-d', strtotime($project->date_to)), ['class' => 'form-control']) }}
                 </div>
             </div>
 
