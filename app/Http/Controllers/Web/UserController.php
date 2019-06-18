@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Web;
+
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserEditRequest;
+use Illuminate\Support\Facades\Hash;
 use App\User;
-use App\Task;
+// use App\Task;
 
 use Illuminate\Http\Request;
 
@@ -11,39 +15,52 @@ class UserController extends Controller
     public function index()
         {
             $users = User::all();
-            $model = 'User';
-            return view('list')->with(['listarr' => $users ,'model' => $model]);
+            return view('user.index')->with('users', $users);
         }
-        public function store(TaskRequest $request)
+        public function store(UserRequest $request)
         {
-            $users = User::create($request->all());
-            return response()->json($users, 201);
+            $user = new User;
+            $user->first_name    = $request->input('first_name');
+            $user->last_name     = $request->input('last_name');
+            $user->position      = $request->input('position');
+            $user->email         = $request->input('email');
+            $user->password      = Hash::make($request->input('password'));
+            $user->save();
+            return redirect('/users')->with('success', 'User Created');
         }
+
         public function show($id)
         {
             $user = User::findOrFail($id);
-            $model = 'User';
-            return view('single')->with(['item' => $user ,'model' => $model]);
+            return view('user.show')->with('user', $user);
         }
-        public function update(TaskRequest $request, $id)
+
+        public function update(UserEditRequest $request, $id)
         {
-            $users = User::findOrFail($id);
-            $users->update($request->all());
-            return response()->json($users, 200);
+            $user = User::findOrFail($id);
+            $user->first_name    = $request->input('first_name');
+            $user->last_name     = $request->input('last_name');
+            $user->position      = $request->input('position');
+            $user->email         = $request->input('email');
+            $user->update();
+            return redirect('/users')->with('success', 'User Updated');
         }
+
         public function destroy($id)
         {
-            User::destroy($id);
-            return response()->json(null, 204);
+            $user = User::findOrFail($id);
+            $user->delete();
+            return redirect('/users')->with('success', 'User Deleted');
         }
 
         public function create()
         {
-            //
-        }        
+            return view('user.create');
+        }
 
         public function edit($id)
         {
-            //
-        }        
+            $user = User::findOrFail($id);
+            return view('user.edit')->with('user', $user);
+        }
 }
